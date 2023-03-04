@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+</head>
+<body> 
+    <div id="root"></div>
+</body>
+<script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js" crossorigin></script>
+<script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js" crossorigin></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+ 
+ 
+    <script type="text/babel">
+        // HARDCODED WAY OF USING REACT JS (Create span using react JS)+++++++++++++++++++
+        // const root = document.getElementById("root");
+        // const span = React.createElement(
+        //     "span", 
+        //     {id: "sexy-span", style: { color: "orange"} }, 
+        //     "Hello I'm a span",
+        //     );
+        // ReactDOM.render(span, root);
+
+
+
+        // // HARDCODED WAY OF USING REACT JS With Event Listeners +++++++++++++++++++
+        // const root = document.getElementById("root");
+        // const h3 = React.createElement(
+        //     "h3", 
+        //     {
+        //         onMouseEnter: () => console.log("Mouse enter"),
+        //     },
+        //     "Hello I'm a span"
+        //     );
+        // const btn = React.createElement(
+        //     "button", 
+        //     {
+        //     onClick: () => console.log("Im clicked!"),
+        //     style: {
+        //         backgroundColor: "green",
+        //         fontSize: "30px",
+        //     }
+        //     },
+        //     "Click Me!"
+        //     );
+        // const container = React.createElement("div", null, [h3, btn]);
+        // ReactDOM.render(container, root);
+
+
+        // Modern Way/Format of Creating React but using CDN
+        const root = document.getElementById("root");
+        // USE FUNCTION WITH RETURN
+        // const Title =(
+        //     <h3 id="title" onMouseEnter={() => console.log("Mouse Enter")}>
+        //     Hello Yo!!!!
+        //     </h3>
+        // );
+
+        function Title() {
+            return (
+            <h3 id="title" onMouseEnter={() => console.log("Mouse Enter")}>
+            Hello Yo!!!!
+            </h3>
+            );
+        }
+
+        // USING ARROW FUNCTION FOR SHORTER CODE
+        // const Button = ( 
+        // <button 
+        // style={{
+        //     backgroundColor: "green",
+        // }} 
+        // onClick={() => console.log("Im Clicked") }
+        // > 
+        // Click me 
+        // </button>
+        // );
+
+        // SHORTER CODE FOR FUNCTION
+        const Button = () =>(
+            <button 
+            style={{
+                backgroundColor: "tomato",
+        }}
+        onClick={() => console.log("Im Cliked!")}
+        >
+        Click Me!
+            </button>
+        );
+        // LONG CODE FOR RENDERING FUNCTION
+        // const container = React.createElement("div", null, [Title, Button]);
+        
+        // SHORT CODE FOR RENDERING FUNCTION
+        const Container = (
+            <div>
+            <Title />
+            <Button />
+            </div>
+        );
+        ReactDOM.render(Container, root);
+    </script>
+</html>
