@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+</head>
+<body> 
+    <div id="root"></div>
+</body>
+<script src="https://unpkg.com/react@17.0.2/umd/react.development.js" crossorigin></script>
+<script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.development.js" crossorigin></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script type="text/babel">
+        
+
+        // const App = () => (
+        //     <div>
+        //         <h1>Super Converter</h1>
+        //         <label for="minutes">Minutes</label>
+        //         <input type="number" placeholder="Minutes"/>
+        //         <label for="hours">Hours</label>
+        //         <input type="number" placeholder="Minutes"/>
+        //     </div>
+        // );
+
+        function MinutesToHours(){
+            const [amount, setAmount] = React.useState(0);
+            const [flipped, setFlip] = React.useState(false);
+            const onChange = (event) =>{
+                setAmount(event.target.value);
+            };
+            const reset = () => setAmount(0);
+            const onFlip = () => {
+                setFlip((current) => !current);
+                reset();
+            };
+        
+            return(
+                <div>
+                    <div>
+                        <label htmlFor="amount">Minutes</label>
+                        <input 
+                        value={flipped ? amount * 60 : amount} 
+                        id="amount" 
+                        type="number" 
+                        placeholder="Minutes"
+                        onChange={onChange}
+                        disabled={flipped} // You can use this to more specific! flipped === true
+                        />
+                    </div>
+
+                    <div>
+                        <label htmlFor="hours">Hours</label>
+                        <input 
+                        value={flipped ? amount : Math.round(amount/60)} 
+                        id="hours" 
+                        type="number" 
+                        placeholder="Hours"
+                        onChange={onChange}
+                        disabled={!flipped} // You can use this to more specific! flipped === false
+                        />
+                    </div>
+                    <button onClick={reset}>Reset Button</button>
+                    <button onClick={onFlip}>{flipped ? "Turn back" : "Flipped"}</button>
+                </div>
+            );
+        }
+        function KmToMiles(){
+            
+            const [distance, setDistance] = React.useState(0);
+            const [turn, setTurn] = React.useState(false);
+            const onChange = (event) =>{
+                setDistance(event.target.value);
+            };
+            const clear = () => setDistance(0);
+            const onSwitch = () => {
+                setTurn((current) => !current);
+                clear();
+            };
+        
+            return(
+                <div>
+                    <div>
+                        <label htmlFor="kilometers">Kilometers</label>
+                        <input 
+                        value={turn ? distance / 0.621371 : distance} 
+                        id="kilometers" 
+                        type="number" 
+                        placeholder="Minutes"
+                        onChange={onChange}
+                        disabled={turn} // You can use this to more specific! flipped === true
+                        />
+                    </div>
+
+                    <div>
+                        <label htmlFor="miles">Miles</label>
+                        <input 
+                        value={turn ? distance : distance*0.621371} 
+                        id="miles" 
+                        type="number" 
+                        placeholder="Hours"
+                        onChange={onChange}
+                        disabled={!turn} // You can use this to more specific! flipped === false
+                        />
+                    </div>
+                    <button onClick={clear}>Reset Button</button>
+                    <button onClick={onSwitch}>{turn ? "Turn back" : "Flipped"}</button>
+                </div>
+            );
+        }
+        function ThirdSelect(){
+            return(
+                <img src="//www.html.am/images/samples/remarkables_queenstown_new_zealand-300x225.jpg" alt="Photo of the Remarkables mountain range in Queenstown, New Zealand." class="GeneratedImage" />
+            );
+        }
+        function App(){
+            const [index, setIndex] = React.useState("0")
+            const onSelect = (event) => {
+                setIndex(event.target.value);
+            }
+            console.log(index);
+            return (
+
+                <div>
+                <h1>Super Converter</h1>
+                <select value={index} onChange={onSelect}>
+                    <option value="0"> Minute and Hours</option>
+                    <option value="1">KM and Miles</option>
+                    <option value="2">ThirdSelect</option>
+                </select>
+                <hr />
+                {index === "0" ? <MinutesToHours /> : null}
+                {index === "1" ? <KmToMiles /> : null}
+                {index === "2" ? <ThirdSelect /> : null}
+            </div>
+            );
+        }
+        const root = document.getElementById("root");
+        ReactDOM.render(<App/>, root);
+    </script>
+</html>
